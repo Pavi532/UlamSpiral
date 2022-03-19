@@ -1,9 +1,9 @@
 const  canvas = document.getElementById('canvas');
 const supportError = "This browser does not support HTML5 Canvas elements";
-canvas.height = 500;
-canvas.width = 1000;
-// canvas.height = window.innerHeight;
-// canvas.width = window.innerWidth;
+// canvas.height = 500;
+// canvas.width = 1000;
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
 
 let ctx;
 let number = 1;
@@ -27,26 +27,24 @@ function setupCanvas(){
 }
 
 function startSpiral(){
-    for( number; number <= 90 ; number++){
-        if (turns > 0){
-            switch (turns % 4){
-                case 0:
-                    positionY += spacing; //Down
-                    break;
-                case 1:
-                    positionX += spacing; //Right
-                    break;
-                case 2:
-                    positionY -= spacing; //Up
-                    break;
-                case 3:
-                    positionX -= spacing; //Left
-                    break;
-                default:
-                    break;
-            }
-        }
+    for( number; number <= 25 ; number++){
         ctx.fillText(number, positionX, positionY);
+        switch (turns % 4){
+            case 0:
+                positionX += spacing; //Right
+                break;
+            case 1:
+                positionY -= spacing; //Up
+                break;
+            case 2:
+                positionX -= spacing; //Left
+                break;
+            case 3:
+                positionY += spacing; //Down
+                break;
+            default:
+                break;
+        }
         if( number % steps == 0){
             turns++;
             turnCount++;
