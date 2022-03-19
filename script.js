@@ -9,7 +9,7 @@ let ctx;
 let number = 1;
 let positionX =canvas.width/2;
 let positionY = canvas.height/2;
-let spacing = 50;
+let spacing = 10;
 let steps = 1;
 let turns = 0;
 let turnCount = 0;
@@ -20,15 +20,18 @@ function setupCanvas(){
     ctx = canvas.getContext('2d');
     ctx.fillStyle = '#000';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.font = '30px Arial';
-    ctx.fillStyle = '#FFF';
-    ctx.textAlign = 'center';
+    // ctx.font = '30px Arial';
+    // ctx.textAlign = 'center';
     startSpiral();
 }
 
 function startSpiral(){
-    for( number; number <= 25 ; number++){
-        ctx.fillText(number, positionX, positionY);
+    for( number; number <= 2500 ; number++){
+        //ctx.fillText(number, positionX, positionY);
+        ctx.beginPath();
+        ctx.arc(positionX, positionY, 2, 0, 2 * Math.PI);
+        (isPrime(number)) ?  ctx.fillStyle = '#c4c4c4':  ctx.fillStyle = '#383838';
+        ctx.fill();
         switch (turns % 4){
             case 0:
                 positionX += spacing; //Right
@@ -54,6 +57,16 @@ function startSpiral(){
         
 
     }
+}
+
+function isPrime(num){
+    if(num === 1) return false;
+    for(i = 2; i <= (num / 2 ); i++){
+        if( num %  i === 0){
+            return false
+        }
+    }
+    return true;
 }
 
 // window.onresize = () => {
