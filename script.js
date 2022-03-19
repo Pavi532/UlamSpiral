@@ -12,6 +12,7 @@ let positionY = canvas.height/2;
 let spacing = 50;
 let steps = 1;
 let turns = 0;
+let turnCount = 0;
 
 const supports =  (canvas.getContext) ? setupCanvas() : console.error(supportError);
 
@@ -26,36 +27,43 @@ function setupCanvas(){
 }
 
 function startSpiral(){
-    for(i = 1; i <= 10 ; i++){
-        if(i > 1){
-            switch (i%4){
+    for( number; number <= 90 ; number++){
+        if (turns > 0){
+            switch (turns % 4){
                 case 0:
-                    positionX -= spacing; //left
-                    break;
-                case 1:
                     positionY += spacing; //Down
                     break;
-                case 2:
+                case 1:
                     positionX += spacing; //Right
                     break;
-                case 3:
+                case 2:
                     positionY -= spacing; //Up
+                    break;
+                case 3:
+                    positionX -= spacing; //Left
                     break;
                 default:
                     break;
             }
         }
-        ctx.fillText(i, positionX, positionY);
+        ctx.fillText(number, positionX, positionY);
+        if( number % steps == 0){
+            turns++;
+            turnCount++;
+            (turnCount % 2 == 0) ? steps++ : steps;
+        }
+        
+        
 
     }
 }
 
-window.onresize = () => {
-    canvas.height = 500;
-    canvas.width = 500;
-    // canvas.height = window.innerHeight;
-    // canvas.width = window.innerWidth;
-    positionY = canvas.height/2;
-    positionX = canvas.width/2;
-    setupCanvas();
-}
+// window.onresize = () => {
+//     canvas.height = 500;
+//     canvas.width = 500;
+//     // canvas.height = window.innerHeight;
+//     // canvas.width = window.innerWidth;
+//     positionY = canvas.height/2;
+//     positionX = canvas.width/2;
+//     setupCanvas();
+// }
