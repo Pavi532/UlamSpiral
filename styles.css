@@ -3,4 +3,9 @@ body {
   height: 100vh;
   width: 100vw;
 }
+
+body canvas {
+  -webkit-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+}
 /*# sourceMappingURL=styles.css.map */

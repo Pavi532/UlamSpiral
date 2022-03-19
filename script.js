@@ -13,6 +13,8 @@ let spacing = 10;
 let steps = 1;
 let turns = 0;
 let turnCount = 0;
+let radius = 2;
+let maxNum = (canvas.width > canvas.height) ? ( canvas.width / spacing ) ** 2 :  ( canvas.height / spacing ) ** 2;
 
 const supports =  (canvas.getContext) ? setupCanvas() : console.error(supportError);
 
@@ -26,10 +28,10 @@ function setupCanvas(){
 }
 
 function startSpiral(){
-    for( number; number <= 2500 ; number++){
+    for( number; number <= maxNum ; number++){
         //ctx.fillText(number, positionX, positionY);
         ctx.beginPath();
-        ctx.arc(positionX, positionY, 2, 0, 2 * Math.PI);
+        ctx.arc(positionX, positionY, radius, 0, 2 * Math.PI);
         (isPrime(number)) ?  ctx.fillStyle = '#c4c4c4':  ctx.fillStyle = '#383838';
         ctx.fill();
         switch (turns % 4){
@@ -70,11 +72,16 @@ function isPrime(num){
 }
 
 // window.onresize = () => {
-//     canvas.height = 500;
-//     canvas.width = 500;
-//     // canvas.height = window.innerHeight;
-//     // canvas.width = window.innerWidth;
+//     canvas.height = window.innerHeight;
+//     canvas.width = window.innerWidth;
 //     positionY = canvas.height/2;
 //     positionX = canvas.width/2;
+//     number = 1;
+//     spacing = 10;
+//     steps = 1;
+//     turns = 0;
+//     turnCount = 0;
+//     radius = 2;
+//     maxNum = (canvas.height * canvas.width) / spacing;
 //     setupCanvas();
 // }
